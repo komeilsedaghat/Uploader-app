@@ -1,0 +1,53 @@
+body {
+    background-color: rgb(36, 33, 33);
+    color: white;
+}
+
+.file-upload {
+    font-size: 110px;
+    color: rgb(226, 226, 13);
+    margin-left: 46%;
+    margin-top: 2%;
+}
+
+.upload-text {
+    margin-top: 1%;
+    margin-left: 44.7%;
+    border-radius: 20px;
+}
+
+.section-uploader{
+    color: rgb(192, 192, 7);
+}
+
+.premium-account-info{
+    color: black;
+    margin-top: 2%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.line-info {
+    font-size: 15px;
+    background-color: yellow;
+    margin-top: 2%;
+    margin-left: 1%;
+    font-family: initial;
+  }
+
+.x-card {
+    height: 146px;
+    border: 1px solid;
+    border-radius: 23px 6px;
+  }
+
+.uploaded-file {
+    color: black;
+    margin-left: 60px;
+    margin-right: 63px;
+    margin-top: 26px;
+}
+
+.back-color {
+    background: #ade5f2;
+  }
