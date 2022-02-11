@@ -1,11 +1,17 @@
 from django import forms
-from .models import FileModel
+from .models import FileModel, VideoModel
 
-class UploadFileForm(forms.ModelForm):
-    class Meta:
-        model = FileModel
-        fields= '__all__'
+class UploadFileForm(forms.Form):
+    file = forms.FileField(required=True,widget=forms.FileInput(attrs={'id':'file','hidden':''}))
+    text = forms.CharField(max_length=200,required=False,widget=forms.Textarea(attrs={'class':'text-plan bg-info','rows':'1'}))
 
-    def __init__(self,*args,**kwawrgs):
-        super(UploadFileForm,self).__init__(*args,**kwawrgs)
-        self.fields['file'].widget.attrs = {'class':'','hidden':'','id':'file'}
+
+    def clean_file(self):
+        file = self.cleaned_data['file']
+        size = file.size
+        max_size = 100000000
+
+        if size > max_size:
+            raise forms.ValidationError('Your Uploaded File Mose Be Less Then 100 MB')
+        else:
+            pass

@@ -50,4 +50,40 @@ body {
 
 .back-color {
     background: #ade5f2;
+    border-radius: 21px 5px;
+  }
+
+
+.upload-section {
+    margin-left: 155px;
+    margin-top: 5px;
+    font-size: 88px;
+    color: #acaafb !important;
+    width: 92px;
+  }
+
+.upload-text {
+    margin-left: 32%;
+    background: #acaafb;
+    text-align: center;
+    margin-top: 6px;
+    width: 140px;
+    color: black;
+    font-size: 18px;
+    font-family: initial;
+  }
+
+.text-config {
+    background: #acaafb;
+    margin-top: 2%;
+    width: 317px;
+    margin-left: 12%;
+    border-radius: 12px;
+  }
+
+.text-plan {
+    width: 231px;
+    margin-left: 20%;
+    border-radius: 14px;
+    margin-top: 2%;
   }

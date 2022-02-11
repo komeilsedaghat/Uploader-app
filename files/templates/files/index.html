@@ -12,11 +12,46 @@
   <div class="row gx-4 gx-lg-5 align-items-center my-5">
       <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'files/img/back.jpg' %}" alt="..." /></div>
       <div class="col-lg-5">
-          <h1 class="font-weight-light">Upload Your File </h1><hr>
+          <h1 class="font-weight-light text-center">Upload Your File </h1><hr>
         {% if request.user.is_anonymous %}
           <p class="alert bg-danger" >Please login to access your account</a>
         {% else %}
-        <p class="alert bg-success">Welcome {{request.user}}</p>
+
+
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div  {% if message.tags %} class=" {{ message.tags }} alert bg-success set-message" {% endif %}> {{ message }} </div>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+
+        {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert bg-danger text-center ">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger text-center mt-3">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+      {% endif %}
+
+
+      <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <label for="file" class="size-icon fas fa-upload  upload-section"></label>
+                {{form.file}}
+                {{form.text}}
+                <input type="submit" class=" btn upload-text" value="UPLOAD">
+            </form>
+
         {% endif %}
       </div>
   </div>
@@ -32,34 +67,28 @@
           <div class="card h-100 back-color">
               <div class="card-body">
                   <h2 class="card-title">Video <li class="fas fa-video"></li></h2>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
               </div>
               <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
           </div>
       </div>
       <div class="col-md-4 mb-5">
-          <div class="card h-100 back-color">
-              <div class="card-body">
-                  <h2 class="card-title">Image <li class="fas fa-image"></li></h2>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod tenetur ex natus at dolorem enim! Nesciunt pariatur voluptatem sunt quam eaque, vel, non in id dolore voluptates quos eligendi labore.</p>
-              </div>
-              <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-          </div>
-      </div>
-      <div class="col-md-4 mb-5">
-          <div class="card h-100 back-color">
-              <div class="card-body">
-                  <h2 class="card-title">Note <i class="fas fa-pen text-dark"></i></h2>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
-              </div>
-              <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-          </div>
-      </div>
+        <div class="card h-100 back-color">
+            <div class="card-body">
+                <h2 class="card-title">Image <li class="fas fa-image"></li></h2>
+            </div>
+            <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-5">
+        <div class="card h-100 back-color">
+            <div class="card-body">
+                <h2 class="card-title">Note <li class="fas fa-pen"></li></h2>
+            </div>
+            <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+        </div>
+    </div>
   </div>
 </div>
-    
 
 
-
-    
 {% endblock %}

@@ -27,8 +27,8 @@ class RegisterUserForm(UserCreationForm):
         self.fields['password2'].widget.attrs = {'class':'input100'}
 
     def clean_password2(self):
-        password1 = self.changed_data['password1']
-        password2 = self.changed_data['password2']
+        password1 = self.cleaned_data['password1']
+        password2 = self.cleaned_data['password2']
 
         if password1 != password2:
             raise forms.ValidationError('password not match')
@@ -37,5 +37,11 @@ class RegisterUserForm(UserCreationForm):
                 raise forms.ValidationError('your password most be more then 8 number')
             else:
                 pass
-
+    
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if User.objects.filter(email = email).exists():
+            raise forms.ValidationError('This email already exists')
+        else:
+            pass
 
