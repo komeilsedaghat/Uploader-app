@@ -12,3 +12,8 @@
     padding: 15px;
     background: #000;
 }
+
+.btn-valid {
+    width: -moz-available;
+    margin-top: 17px;
+}

@@ -58,33 +58,42 @@
   <!-- Call to Action-->
   <div class="card text-white bg-secondary my-5 py-2 text-center">
       <div class="card-body"><p class="text-white m-0">
-        for more security enable your 2-step password
+        for activate your 2-factor authentication <a href="" class="text-warning">Click Hear</a>
       </p></div>
   </div>
   <!-- Content Row-->
   <div class="row gx-4 gx-lg-5 text-dark">
-      <div class="col-md-4 mb-5">
+      <div class="col-md-6 mb-5">
           <div class="card h-100 back-color">
               <div class="card-body">
-                  <h2 class="card-title">Video <li class="fas fa-video"></li></h2>
+                  <h2 class="card-title">Your Last Videos <li class="fas fa-video"></li></h2>
               </div>
-              <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+              {% if request.user.is_authenticated %}
+                {% if videos.file %}
+              <div class="last-videos">
+                    <video muted  controls="controls" preload="preload" class="img-fluid shadow-sm img-thumbnail">
+                        <source src="{{ videos.file.url }}" type="video/mp4"></source>
+                    </video>
+                </div>
+                {% endif %}
+            {% endif %}
+                
+              <div class="card-footer"><a class="btn btn-primary btn-sm" href="{% url 'file:video' %}">see all video</a></div>
           </div>
       </div>
-      <div class="col-md-4 mb-5">
+      <div class="col-md-6 mb-5">
         <div class="card h-100 back-color">
             <div class="card-body">
-                <h2 class="card-title">Image <li class="fas fa-image"></li></h2>
+                <h2 class="card-title">Your Last Images <li class="fas fa-image"></li></h2>
             </div>
-            <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-        </div>
-    </div>
-    <div class="col-md-4 mb-5">
-        <div class="card h-100 back-color">
-            <div class="card-body">
-                <h2 class="card-title">Note <li class="fas fa-pen"></li></h2>
+            {% if request.user.is_authenticated %}
+            {% if images.file %}
+            <div>
+                <img src="{{images.file.url}}" alt="..." class="images-last">
             </div>
-            <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+            {% endif %}
+            {% endif %}
+            <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">see all image</a></div>
         </div>
     </div>
   </div>

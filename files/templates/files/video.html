@@ -1,16 +1,22 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'files/css/style.css' %}">
+{% endblock %}
 
 {% block content %}
 
 {% for video in object_list %}
   <div class="card mb-3">
-    <video  controls="controls" preload="preload" class="img-fluid shadow-sm img-thumbnail">
+    <video  controls="controls" preload="preload" class="change-video-style">
       <source src="{{ video.file.url }}" type="video/mp4"></source>
     </video><br>
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      {% if video.text %}
+      <p class="card-text text-dark text-center fs-2  ">{{ video.text }}</p>
+      {% endif %}
+      <p class="card-text"><small class="text-muted">{{ video.time }}</small></p>
     </div>
   </div>
 {% endfor %}

@@ -14,18 +14,33 @@ class HomeView(FormView):
     form_class = UploadFileForm
 
     def form_valid(self, form):
+        print(form.cleaned_data['text'])
         user = self.request.user
         #file 
         if self.request.FILES['file']:
             file = self.request.FILES['file']
             if file.content_type[:5] == 'video':
-                new_record = VideoModel(user = user,file = file)
+                type = 'video'
+                new_record = VideoModel(user = user,file = file,text = form.cleaned_data['text'])
             elif file.content_type[:5] == 'image':
-                new_record = ImageModel(user = user,file = file)
-                
+                type = 'image'
+                new_record = ImageModel(user = user,file = file,text = form.cleaned_data['text'])
+            
+            messages.success(self.request,f'Your {type} Uploaded Successfully ')    
             new_record.save()
-        
         return redirect('/')
+    
+    
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            Video = VideoModel.objects.filter(user = self.request.user).order_by('time').last()
+            context['videos'] = Video
+
+            Image = ImageModel.objects.filter(user = self.request.user).order_by('time').last()
+            context['images'] = Image
+        return context
+
 
 
 class VideoView(ListView):
@@ -34,8 +49,5 @@ class VideoView(ListView):
     
 
     def get_queryset(self):
-        query = FileModel.objects.filter(user = self.request.user)
-        for qu in query:
-            print(qu.file)
-            # if qu.file.content_type[:5] == 'video':
-            #     return qu
+        query = VideoModel.objects.filter(user = self.request.user)
+        return query

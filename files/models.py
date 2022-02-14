@@ -6,6 +6,7 @@ from account.models import User
 class FileModel(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     text = models.CharField(max_length=200,blank=True)
+    time = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         abstract = True
@@ -15,8 +16,14 @@ class FileModel(models.Model):
 
 
 class VideoModel(FileModel):
-    file = models.FileField()
+    file = models.FileField(upload_to='video/')
+
+    class Meta:
+        ordering = ['-time']
 
 class ImageModel(FileModel):
-    file = models.ImageField()
+    file = models.ImageField(upload_to = 'image/')
+
+    class Meta:
+        ordering = ['-time']
 

@@ -1,3 +1,5 @@
+from curses.ascii import US
+from dataclasses import field
 from django import forms
 from .models import User
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
@@ -43,5 +45,19 @@ class RegisterUserForm(UserCreationForm):
         if User.objects.filter(email = email).exists():
             raise forms.ValidationError('This email already exists')
         else:
-            pass
+            return email
 
+
+class TFAForm(forms.Form):
+    token_number = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'input100'}))
+
+
+class ActivateTFAForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('TwoFactorAuthentication',)
+
+
+    def __init__(self,*args,**kwargs):
+        super(ActivateTFAForm, self).__init__(*args, **kwargs)
+        self.fields['TwoFactorAuthentication'].widget.attrs = {'class':'input100'}

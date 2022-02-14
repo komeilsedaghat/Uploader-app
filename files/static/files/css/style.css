@@ -87,3 +87,28 @@ body {
     border-radius: 14px;
     margin-top: 2%;
   }
+
+.img-thumbnail {
+    padding: -0.75rem;
+    background-color: #000;
+    border: 1px solid #dee2e6;
+    border-radius: 17px;
+    max-width: 68%;
+    height: auto;
+    margin-left: 12%;
+  }
+  .images-last {
+    width: 77%;
+    margin-bottom: 18px;
+    margin-left: 55px;
+    border-radius: 7px;
+    height: 200px;
+  }
+
+  .change-video-style {
+    width: 52%;
+    margin-left: 24%;
+    margin-top: 4%;
+    border-radius: 16px;
+    height: auto;
+  }

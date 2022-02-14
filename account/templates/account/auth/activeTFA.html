@@ -46,45 +46,16 @@
   {% endif %}
 
 
+
 <form method="post">
 	{% csrf_token %}
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-26">
-						Welcome
-					</span>
-
-					<div class="wrap-input100 validate-input">
-						{{form.username}}
-						<span class="focus-input100" data-placeholder="Username"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<span class="btn-show-pass">
-							<i class="zmdi zmdi-eye"></i>
-						</span>
-						{{form.password}}
-						<span class="focus-input100" data-placeholder="Password"></span>
-					</div>
-
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<input type="submit" class="login100-form-btn btn btn-primary" value="Login">
-						</div>
-					</div>
-
-					<div class="text-center p-t-115">
-						<span class="txt1">
-							Don't have an account?
-						</span>
-
-						<a class="txt2" href="{% url 'account:register' %}">
-							Register
-						</a>
-					</div>
+	<div class="limiter"><br>
+		<div>
+			<div class="wrap-login100" style="margin-left: 36%;">
+				<form class="">
+					<label for="">Two-Factor Authentication</label>
+					{{form.TwoFactorAuthentication}}
+					<input class="btn btn-success btn-valid " type="submit" value="Done">
 				</form>
 			</div>
 		</div>
