@@ -7,3 +7,4 @@
 
 >1. Upload Videos and Photos 
 >2. Two-Factor Authentication Login For More Security
+>3. Support two language(Persian,English)
