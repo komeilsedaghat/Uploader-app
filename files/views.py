@@ -1,19 +1,24 @@
 from curses.ascii import US
 from django.contrib import messages
 from django.shortcuts import redirect, render
-from django.views.generic import CreateView,ListView
+from django.views.generic import CreateView,ListView,View
 from django.views.generic.edit import FormView
 from account.models import User
 from .forms import UploadFileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import FileModel,VideoModel,ImageModel
+from django.utils.translation import activate
 # Create your views here.
 
 class HomeView(FormView):
     template_name = "files/index.html"
     form_class = UploadFileForm
+    
+    
 
     def form_valid(self, form):
+        activate('fa')
+
         print(form.cleaned_data['text'])
         user = self.request.user
         #file 
@@ -39,15 +44,28 @@ class HomeView(FormView):
 
             Image = ImageModel.objects.filter(user = self.request.user).order_by('time').last()
             context['images'] = Image
+
+
         return context
 
+class ChangeLanView(View):
+    def get(self,request):
+        activate(request.GET.get('lang'))
+        return redirect(request.GET.get('next'))
 
 
-class VideoView(ListView):
+class VideoView(LoginRequiredMixin,ListView):
     template_name = 'files/video.html'
-    is_video = False
     
 
     def get_queryset(self):
         query = VideoModel.objects.filter(user = self.request.user)
+        return query
+
+class ImageView(LoginRequiredMixin,ListView):
+    template_name = 'files/image.html'
+    
+
+    def get_queryset(self):
+        query = ImageModel.objects.filter(user = self.request.user)
         return query

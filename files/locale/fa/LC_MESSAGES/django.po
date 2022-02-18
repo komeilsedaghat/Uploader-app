@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-18 14:10+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: templates/base.html:49
+msgid "EN"
+msgstr "انگلیسی"
+
+#: templates/base.html:50
+msgid "FA"
+msgstr "فارسی"
+
+#: files/templates/files/index.html:19
+msgid "Upload Your File"
+msgstr "فایل خود را آپلود کنید"
+
+#: files/templates/files/index.html:21
+msgid "Please login to access your account"
+msgstr "برای دسترسی به اکانت خود لاگین کنید"
+
+#: files/templates/files/index.html:67
+msgid "for activate your 2-factor authentication"
+msgstr "برای فعال کردن رمز دو مرحله ای"
+
+#: files/templates/files/index.html:67
+msgid "Click Hear"
+msgstr "اینجا کلیک کنید"
+
+#: files/templates/files/index.html:77
+msgid "Your Last Videos"
+msgstr "آخرین ویدیوی شما"
+
+#: files/templates/files/index.html:89
+msgid "see all video"
+msgstr " تمام ویدیو ها"
+
+#: files/templates/files/index.html:95
+msgid "Your Last Images"
+msgstr "آخرین تصویر شما"
+
+#: files/templates/files/index.html:104
+msgid "see all image"
+msgstr "تمام تصاویر"

@@ -8,5 +8,5 @@ urlpatterns = [
     path('logout/',LogoutUserView.as_view(),name='logout'),
     path('register/',RegisterUserView.as_view(),name='register'),
     path('login/TFA/',TwoFactorAuthenticationView.as_view(),name = 'TFA'),
-    path('TFA/',ActiveTFAView.as_view(),name ='activateTFA' ),
+    path('TFA/<int:pk>/',ActiveTFAView.as_view(),name ='activateTFA' ),
 ]
