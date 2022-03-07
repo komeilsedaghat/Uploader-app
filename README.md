@@ -1,8 +1,8 @@
 
 
 ***What is Uploader-app?***
->This app is for uploading files and managing them with high security
->db:postgresql
+>.This app is for uploading files and managing them with high security
+>.db:postgresql
 
 **Features:**
 
