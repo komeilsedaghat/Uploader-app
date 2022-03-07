@@ -21,20 +21,24 @@ class LoginUserView(SuccessMessageMixin,FormView):
     template_name = "account/auth/login.html"
     form_class = LoginUserForm
     success_url =reverse_lazy('account:TFA')
-    
+
+    def RandomNumber(self):
+        number =  random.randrange(100000,999999)
+        return number
 
     def form_valid(self,form):
-        global number
+        global Random
         global username
         global password
         username = form.cleaned_data['username']
         password = form.cleaned_data['password']
         user = get_object_or_404(User,username = username)
 
-        if user.TwoFactorAuthentication:        
-            number = random.randrange(100000,999999)
+        if user.TwoFactorAuthentication: 
+            Random = self.RandomNumber() 
+            print(Random)      
             subject = 'authentication code'
-            message = f"Hi {username} \U0001F607 \n Your Verification Code {number} \n Have a Good Day"
+            message = f"Hi {username} \U0001F607 \n Your Verification Code {Random} \n Have a Good Day"
             email_from = settings.EMAIL_HOST_USER
             user = get_object_or_404(User,username = username)
             recipient_list = [user.email, ]
@@ -58,7 +62,7 @@ class TwoFactorAuthenticationView(FormView):
 
     def form_valid(self,form):
         token_input = form.cleaned_data['token_number']
-        if token_input == number:
+        if token_input == Random:
             user = authenticate(self.request, username=username, password=password)
             login(self.request,user)
             messages.success(self.request,f'Welcome {username}')

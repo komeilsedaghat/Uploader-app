@@ -14,12 +14,8 @@ class HomeView(FormView):
     template_name = "files/index.html"
     form_class = UploadFileForm
     
-    
-
     def form_valid(self, form):
-        activate('fa')
-
-        print(form.cleaned_data['text'])
+        
         user = self.request.user
         #file 
         if self.request.FILES['file']:
@@ -45,10 +41,9 @@ class HomeView(FormView):
             Image = ImageModel.objects.filter(user = self.request.user).order_by('time').last()
             context['images'] = Image
 
-
         return context
 
-class ChangeLanView(View):
+class ChangeLangView(View):
     def get(self,request):
         activate(request.GET.get('lang'))
         return redirect(request.GET.get('next'))
@@ -56,16 +51,11 @@ class ChangeLanView(View):
 
 class VideoView(LoginRequiredMixin,ListView):
     template_name = 'files/video.html'
-    
-
     def get_queryset(self):
-        query = VideoModel.objects.filter(user = self.request.user)
-        return query
+        return  VideoModel.objects.filter(user = self.request.user)
+      
 
 class ImageView(LoginRequiredMixin,ListView):
     template_name = 'files/image.html'
-    
-
     def get_queryset(self):
-        query = ImageModel.objects.filter(user = self.request.user)
-        return query
+        return ImageModel.objects.filter(user = self.request.user)
